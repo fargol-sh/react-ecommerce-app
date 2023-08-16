@@ -10,6 +10,7 @@ import ItemDetails from './scenes/itemDetails/ItemDetails';
 import Checkout from './scenes/checkout/Checkout';
 import Confirmation from './scenes/checkout/Confirmation';
 import Navbar from './scenes/global/Navbar';
+import CartMenu from './scenes/global/CartMenu';
 
 
 // we write this function to go on top of a page
@@ -34,6 +35,7 @@ function App() {
           <Route path="checkout" element={<Checkout />} />
           <Route path="checkout/success" element={<Confirmation />} />
         </Routes>
+        <CartMenu />
       </BrowserRouter>
     </div>
   );
