@@ -19,7 +19,7 @@ const Item = ({ item, width }) => {
     const {
         data: {
             attributes: {
-                format: {
+                formats: {
                     medium: { url}
                 }
             }
@@ -38,7 +38,7 @@ const Item = ({ item, width }) => {
                     style={{ cursor: 'pointer'}}
                 />
                 <Box 
-                    display={isHovered ? 'blocked' : 'none'}
+                    display={isHovered ? 'block' : 'none'}
                     position='absolute'
                     bottom="10%"
                     left="0"
@@ -69,7 +69,13 @@ const Item = ({ item, width }) => {
                         {/* BUTTON */}
                         <Button 
                             onClick={() => dispatch(addToCart({item: {...item, count}}))}
-                            sx={{ backgroundColor: shades.primary[300], color: 'white'}}
+                            sx={{ 
+                                backgroundColor: shades.primary[300], 
+                                color: 'white',
+                                "&:hover": {
+                                    backgroundColor: shades.primary[400]
+                                }
+                            }}
                         >
                             Add to Cart
                         </Button>
@@ -79,16 +85,19 @@ const Item = ({ item, width }) => {
 
             <Box mt="3px">
                 <Typography variant="subtitle2" color={neutral.dark}>
-                    {/* Using regex to replace category into a proper format,
-                        we're choosing the first letter and capitalize it:
-                    */}
-                    
-                    {/* ask chatgpt about this format later! */}
+                {/* This code takes a string named category, 
+                adds spaces before each uppercase letter, and then 
+                capitalizes the first character of the modified string. 
+                The code transforms a string like "productCategory" into
+                "Product Category". */}
                     {category
                     .replace(/([A-Z])/g, " $1")
-                    .replace(/^ ./, (str) => str.toUpperCase())
+                    .replace(/^./, (str) => str.toUpperCase())
                     }
                 </Typography>
+
+                <Typography>{name}</Typography>
+                <Typography fontWeight="bold">${price}</Typography>
             </Box>
         </Box>
     );
