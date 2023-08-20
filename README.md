@@ -1,6 +1,6 @@
-# Awesome E-Commerce App 👛🛍️
+# React E-Commerce App 👛🛍️
 
-Welcome to the Awesome E-Commerce App! This is a project that I've built using modern technologies to showcase my skills in web development. The app allows users to explore and purchase a variety of products in a seamless and user-friendly manner.
+Welcome to the react E-Commerce App! This is a project that I've built using modern technologies to showcase my skills in web development. The app allows users to explore and purchase a variety of products in a seamless and user-friendly manner.
 
 ## Table of Contents
 - [Features](#features)
