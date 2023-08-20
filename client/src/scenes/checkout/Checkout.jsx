@@ -127,8 +127,12 @@ const Checkout = () => {
         actions.setTouched({});
     }
 
+    // This will be executed when user clicks 'Next' in the second step:
     async function makePayment(values) {
+        console.log('Done!')
+        // calling stripePromise
         const stripe = await stripePromise;
+
         const requestBody = {
             userName: [values.firstName, values.lastName].join(" "),
             email: values.email,
@@ -138,13 +142,17 @@ const Checkout = () => {
             }))
         };
 
+        // sending request to our back-end
         const response = await fetch('http://localhost:1337/api/orders', {
             method: 'POST',
-            headers: { 'Content-type': 'application/json'},
+            headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(requestBody)
         });
 
         const session = await response.json();
+        console.log(session);
+
+        // redirect user checkout page
         await stripe.redirectToCheckout({
             sessionId: session.id
         })
@@ -218,8 +226,7 @@ const Checkout = () => {
                                         borderRadius: 0,
                                         padding: "15px 40px"
                                     }}
-                                    onClick={() => setActiveStep(activeStep - 1)}
-                                >{isFirstStep ? "Next" : "Place Order"}</Button>
+                                >{!isSecondStep ? "Next" : "Place Order"}</Button>
                             </Box>
                         </form>
                     )}
